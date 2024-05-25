@@ -30,7 +30,6 @@ jobs:
         run: ng add @angular-eslint/schematics --skip-confirmation
       - name: Run ESLint
         run: npm run lint
-        continue-on-error: true
         
   tests:
     name: Run Tests
@@ -49,7 +48,6 @@ jobs:
         run: npm ci        
       - name: Run Tests
         run: npm run test
-        continue-on-error: true
           
   Sonar:
     needs: tests
