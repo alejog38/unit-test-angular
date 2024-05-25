@@ -5,6 +5,7 @@ on:
     branches: 
     - release/*
     - team/*
+    - hotfix/*
   pull_request:
     branches: 
     - feature/*
