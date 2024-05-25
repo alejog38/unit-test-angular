@@ -1,0 +1,80 @@
+name: Build Project CI
+on:
+  workflow_dispatch:
+  push:
+    branches: 
+    - release/*
+    - team/*
+  pull_request:
+    branches: 
+    - feature/*
+jobs:
+  Dependencies:    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Angular CLI
+        run: npm i -g @angular/cli
+      - name: Add lint schematics
+        run: ng add @angular-eslint/schematics --skip-confirmation
+      - name: Run ESLint
+        run: npm run lint
+        
+  tests:
+    name: Run Tests
+    needs: Dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3        
+      - name: Use Node.js 18.x to run Test
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'          
+      - name: Install Dependencies
+        run: npm ci        
+      - name: Run Tests
+        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+          
+  Sonar:
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download artifact generated
+      uses: actions/download-artifact@v4
+      with:
+        name:  ${{ vars.github.repository }}
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v2.2.0
+      with: 
+        args: >
+          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION}}
+          -Dsonar.projectKey=angular-realworld-example-app
+          -Dsonar.verbose=true
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
+  Security:
+    needs: Sonar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: monitor
