@@ -4,10 +4,10 @@ on:
   push:
     branches: 
     - release/*
-    - feature/*
     - team/*
   pull_request:
     branches: 
+    - feature/*
     - develop
     - QA
     - main
