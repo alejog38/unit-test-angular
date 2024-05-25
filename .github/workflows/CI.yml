@@ -1,10 +1,6 @@
 name: Build Project CI
 on:
   workflow_dispatch:
-  push:
-    branches: 
-    - release/*
-    - team/*
   pull_request:
     branches: 
     - feature/*
