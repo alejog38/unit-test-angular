@@ -69,6 +69,7 @@ jobs:
           -Dsonar.verbose=true
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
   Security:
     needs: Sonar
     runs-on: ubuntu-latest
@@ -80,6 +81,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: monitor
+          
   Build:
     needs: [Dependencies, Sonar, Security]    
     runs-on: ubuntu-latest
