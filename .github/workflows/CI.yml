@@ -129,3 +129,4 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}      
       - name: Generación de atestación de artefactos emplea: actions/attest-build-provenance@v1 con:   subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}   subject-digest: ${{ steps.push.outputs.digest }}   push-to-registry: true
+      
