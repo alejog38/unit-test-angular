@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Install dependencies
-        run: npm ci
+        run: npm ci install-clean
       - name: Install Angular CLI
         run: npm i -g @angular/cli
       - name: Add lint schematics
