@@ -30,6 +30,7 @@ jobs:
         run: npm run lint
       - name: Clean Artifact
         run: rm /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar
+        continue-on-error: true
       - name: Comprimir artefacto
         run: tar -czvf artifact.tar.gz /home/runner/work/unit-test-angular/unit-test-angular/
       - name: Generar artefacto
