@@ -58,6 +58,9 @@ jobs:
         run: ls -al artifact.tar
       - name: Extract files
         run: sudo tar -xvf artifact.tar/artifact.tar
+      - name: Move folders
+        run: mv artifact/home/runner/work/unit-test-angular/unit-test-angular/node_modules/ /../home/runner/work/unit-test-angular/unit-test-angular/
+        
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
