@@ -53,7 +53,7 @@ jobs:
           name: build-artifact
           path: artifact.tar
       - name: show folder structure
-        run: ls -al /artifact.tar
+        run: ls -al | cd artifact.tar | ls -al
       - name: Extract files
         run: sudo tar -xvf artifact.tar
       - name: Run Tests
