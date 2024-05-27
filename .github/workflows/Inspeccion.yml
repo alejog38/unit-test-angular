@@ -52,8 +52,10 @@ jobs:
         with:
           name: build-artifact
           path: /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar
+      - name: show folder structure
+        run: ls -al
       - name: Descomprimir Artefacto
-        run: tar -xvf artifact.tar
+        run: tar -xvf /build-artifact/artifact.tar
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
