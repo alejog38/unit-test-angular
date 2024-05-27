@@ -53,13 +53,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifact
-          path: /
+          path: /home/runner/work/unit-test-angular/unit-test-angular/
       - name: show folder structure
         run: ls -al
       - name: show folder structure artifact tar
         run: ls -al artifact.tar
       - name: Extract files
-        run: sudo tar -xvf artifact.tar -C /./home/runner/work/unit-test-angular/unit-test-angular/
+        run: sudo tar -xvf artifact.tar
       - name: show folder structure
         run: ls -al
       - name: Run Tests
