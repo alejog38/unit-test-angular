@@ -28,11 +28,13 @@ jobs:
         run: ng add @angular-eslint/schematics --skip-confirmation
       - name: Run ESLint
         run: npm run lint
+      - name: Comprimir artefacto
+        run: tar -cvf artifact.tar /home/runner/work/unit-test-angular/unit-test-angular/
       - name: Generar artefacto
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: /home/runner/work/unit-test-angular/unit-test-angular/
+          path: /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar
         
   tests:
     name: Run Tests
@@ -46,7 +48,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-artifact
-          path: /home/runner/work/unit-test-angular/unit-test-angular/   
+          path: /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar
+      - name: Descomprimir Artefacto
+        run: tar -xzvf artifact.tar
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
