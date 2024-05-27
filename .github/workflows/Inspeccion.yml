@@ -32,12 +32,13 @@ jobs:
         run: rm /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar
         continue-on-error: true
       - name: Comprimir artefacto
-        run: tar -czvf artifact.tar.gz /home/runner/work/unit-test-angular/unit-test-angular/
+        run: tar -cvf artifact.tar /home/runner/work/unit-test-angular/unit-test-angular/
       - name: Generar artefacto
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar.gz
+          path: /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar
+          compression-level: 9
         
   tests:
     name: Run Tests
@@ -51,9 +52,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-artifact
-          path: /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar.gz
+          path: /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar
       - name: Descomprimir Artefacto
-        run: tar -xzvf artifact.tar.gz -C /home/runner/work/unit-test-angular/unit-test-angular/
+        run: tar -xvf artifact.tar -C /home/runner/work/unit-test-angular/unit-test-angular/
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
