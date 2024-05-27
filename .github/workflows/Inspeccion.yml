@@ -57,11 +57,7 @@ jobs:
       - name: Assign Permissions
         run: chmod +755 artifact.tar
       - name: Extract files
-        uses: a7ul/tar-action@v1.1.0
-        id: extract
-        with:
-          command: x
-          files: artifact.tar
+        run: sudo tar -xvf artifact.tar
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
