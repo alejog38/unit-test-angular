@@ -53,9 +53,7 @@ jobs:
           name: build-artifact
           path: artifact.tar
       - name: show folder structure
-        run: ls -al
-      - name: Assign Permissions
-        run: chmod +755 artifact.tar
+        run: ls -al /artifact.tar
       - name: Extract files
         run: sudo tar -xvf artifact.tar
       - name: Run Tests
