@@ -28,6 +28,11 @@ jobs:
         run: ng add @angular-eslint/schematics --skip-confirmation
       - name: Run ESLint
         run: npm run lint
+      - name: Generar artefacto
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifact
+          path: dist/
         
   tests:
     name: Run Tests
@@ -37,13 +42,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3        
-      - name: Use Node.js 18.x to run Test
-        uses: actions/setup-node@v3
+      - name: Descargar artefacto
+        uses: actions/download-artifact@v3
         with:
-          node-version: 18.x
-          cache: 'npm'          
-      - name: Install Dependencies
-        run: npm ci        
+          name: build-artifact
+          path: dist/    
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
