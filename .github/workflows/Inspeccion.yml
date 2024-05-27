@@ -55,7 +55,7 @@ jobs:
       - name: show folder structure
         run: ls -al
       - name: Descomprimir Artefacto
-        run: tar -xvf /build-artifact/artifact.tar
+        run: tar -xvf artifact.tar -C /
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
