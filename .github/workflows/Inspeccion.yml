@@ -38,7 +38,6 @@ jobs:
         with:
           name: build-artifact
           path: /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar
-          compression-level: 9
         
   tests:
     name: Run Tests
@@ -54,7 +53,7 @@ jobs:
           name: build-artifact
           path: /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar
       - name: Descomprimir Artefacto
-        run: tar -xvf artifact.tar -C /home/runner/work/unit-test-angular/
+        run: tar -xvf artifact.tar
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
