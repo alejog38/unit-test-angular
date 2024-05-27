@@ -54,7 +54,7 @@ jobs:
           name: build-artifact
           path: /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar
       - name: Descomprimir Artefacto
-        run: tar -xvf /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar -C /home/runner/work/unit-test-angular/
+        run: tar -xvf artifact.tar -C /home/runner/work/unit-test-angular/
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
