@@ -57,7 +57,7 @@ jobs:
       - name: show folder structure artifact tar
         run: ls -al artifact.tar
       - name: Extract files
-        run: sudo tar -xvf artifact.tar
+        run: sudo tar -xvf artifact.tar/artifact.tar
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
