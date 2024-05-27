@@ -59,8 +59,8 @@ jobs:
         id: extract
         with:
           command: x
-          cwd: ../
           files: artifact.tar
+          outPath: ./
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
