@@ -29,7 +29,7 @@ jobs:
       - name: Run ESLint
         run: npm run lint
       - name: Clean Artifact
-        run: rm /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar
+        run: rm /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar/artifact.tar
         continue-on-error: true
       - name: Comprimir artefacto
         run: tar -cvf artifact.tar /home/runner/work/unit-test-angular/unit-test-angular/node_modules/
@@ -62,6 +62,8 @@ jobs:
         run: ls -al artifact.tar
       - name: show folder structure
         run: ls -al
+      - name: Move folder structure
+        run: mv /home/runner/work/unit-test-angular/unit-test-angular/ /./home/runner/work/unit-test-angular/unit-test-angular/
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
