@@ -54,6 +54,8 @@ jobs:
           path: artifact.tar
       - name: show folder structure
         run: ls -al
+      - name: Assign Permissions
+        run: chmod +755 artifact.tar
       - name: Extract files
         uses: a7ul/tar-action@v1.1.0
         id: extract
