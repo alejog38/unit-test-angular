@@ -31,8 +31,10 @@ jobs:
       - name: Clean Artifact
         run: rm /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar/artifact.tar
         continue-on-error: true
+      - name: show folder structure
+        run: ls -al
       - name: Comprimir artefacto
-        run: tar -cvf artifact.tar /node_modules/
+        run: tar -cvf artifact.tar node_modules/
       - name: Generar artefacto
         uses: actions/upload-artifact@v4
         with:
