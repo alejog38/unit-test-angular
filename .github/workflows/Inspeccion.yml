@@ -29,10 +29,8 @@ jobs:
       - name: Run ESLint
         run: npm run lint
       - name: Clean Artifact
-        run: rm /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar/artifact.tar
+        run: rm artifact.tar
         continue-on-error: true
-      - name: show folder structure
-        run: ls -al
       - name: Comprimir artefacto
         run: tar -cvf artifact.tar node_modules/
       - name: Generar artefacto
@@ -54,10 +52,6 @@ jobs:
         with:
           name: build-artifact
           path: /home/runner/work/unit-test-angular/unit-test-angular/
-      - name: show folder structure
-        run: ls -al
-      - name: show folder structure artifact tar
-        run: ls -al artifact.tar
       - name: Extract files
         run: sudo tar -xvf artifact.tar
       - name: show folder structure
@@ -90,7 +84,9 @@ jobs:
     needs: Sonar
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         env:
