@@ -32,7 +32,7 @@ jobs:
         run: rm /home/runner/work/unit-test-angular/unit-test-angular/artifact.tar/artifact.tar
         continue-on-error: true
       - name: Comprimir artefacto
-        run: tar -cvf artifact.tar /home/runner/work/unit-test-angular/unit-test-angular/node_modules/
+        run: tar -cvf artifact.tar /node_modules/
       - name: Generar artefacto
         uses: actions/upload-artifact@v4
         with:
@@ -51,19 +51,15 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifact
-          path: artifact.tar
+          path: /
       - name: show folder structure
         run: ls -al
       - name: show folder structure artifact tar
         run: ls -al artifact.tar
       - name: Extract files
-        run: sudo tar -xvf artifact.tar/artifact.tar -C /./home/runner/work/unit-test-angular/unit-test-angular/
-      - name: show folder structure artifact tar
-        run: ls -al artifact.tar
+        run: sudo tar -xvf artifact.tar -C /./home/runner/work/unit-test-angular/unit-test-angular/
       - name: show folder structure
         run: ls -al
-      - name: Move folder structure
-        run: mv /home/runner/work/unit-test-angular/unit-test-angular/ /./home/runner/work/unit-test-angular/unit-test-angular/
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
