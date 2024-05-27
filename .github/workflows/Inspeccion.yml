@@ -46,7 +46,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-artifact
-          path: dist/    
+          path: /home/runner/work/unit-test-angular/unit-test-angular/   
       - name: Run Tests
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
           
