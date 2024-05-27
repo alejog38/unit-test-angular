@@ -60,6 +60,8 @@ jobs:
         run: sudo tar -xvf artifact.tar/artifact.tar
       - name: show folder structure artifact tar
         run: ls -al artifact.tar
+      - name: show folder structure
+        run: ls -al
       - name: Move folders
         run: mv /artifact/home/runner/work/unit-test-angular/unit-test-angular/node_modules/ /../home/runner/work/unit-test-angular/unit-test-angular/
         
