@@ -57,7 +57,7 @@ jobs:
       - name: show folder structure artifact tar
         run: ls -al artifact.tar
       - name: Extract files
-        run: sudo tar -xvf artifact.tar/artifact.tar
+        run: sudo tar -xvf artifact.tar/artifact.tar -C /./home/runner/work/unit-test-angular/unit-test-angular/
       - name: show folder structure artifact tar
         run: ls -al artifact.tar
       - name: show folder structure
