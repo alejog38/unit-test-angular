@@ -12,9 +12,6 @@ on:
 jobs:
   Dependencies:    
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: dist
     steps:
       - name: Get Code
         uses: actions/checkout@v3
@@ -35,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-          path: dist/
+          path: /home/runner/work/unit-test-angular/unit-test-angular/
         
   tests:
     name: Run Tests
